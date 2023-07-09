@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import TodoList from "./TodoList";
+import InputArea from "./InputArea";
 
 function App() {
-  const [item, setItem] = useState("");
   const [listItems, updateListItems] = useState([]);
 
-  function newItem(event) {
-    setItem(event.target.value);
-  }
-
-  function addItem() {
+  function addItem(item) {
     updateListItems((prevItems) => {
       return [...prevItems, item];
     });
-    setItem("");
   }
 
   function deleteItem(id) {
@@ -30,10 +25,7 @@ function App() {
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input onChange={newItem} type="text" value={item} />
-        <button onClick={addItem}>
-          <span>Add</span>
-        </button>
+        <InputArea onAdd={addItem} />
       </div>
       <div>
         <ul>
