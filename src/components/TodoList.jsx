@@ -3,16 +3,17 @@ import React, { useState } from "react";
 function TodaList(props) {
   const [flag, setFlag] = useState(true);
 
-  function handleClick() {
-    if (flag) {
-      setFlag(false);
-    } else {
-      setFlag(true);
-    }
-  }
+  // function handleClick() {
+  //   setFlag((prevFlag) => {
+  //     return !prevFlag;
+  //   });
+  // }
+
   return (
     <li
-      onClick={handleClick}
+      onClick={() => {
+        props.onChecked(props.id);
+      }}
       style={{ textDecoration: flag ? "none" : "line-through" }}
     >
       {props.text}
